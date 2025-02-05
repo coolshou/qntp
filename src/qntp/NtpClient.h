@@ -94,7 +94,7 @@ private Q_SLOTS:
 
             QHostAddress address;
             quint16 port;
-            if (m_socket->readDatagram(reinterpret_cast<char *>(&packet), sizeof(packet), &address, &port) < sizeof(NtpPacket))
+            if (m_socket->readDatagram(reinterpret_cast<char *>(&packet), sizeof(packet), &address, &port) < (qint64)sizeof(NtpPacket))
                 continue;
 
             Q_EMIT replyReceived(address, port, NtpReply(packet, QDateTime::currentDateTime()));
